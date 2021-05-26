@@ -25,7 +25,7 @@ export default defineComponent({
     useFetch(async () => {
       const slug = route.value.params.slug
       const { data } = await $axios.get<BlogResponse>(
-        `${$config.BASE_API_URL}/examples/${slug}`,
+        `${$config.BASE_API_URL}/blogs/${slug}`,
         {
           headers: { 'X-API-KEY': $config.API_KEY },
         }

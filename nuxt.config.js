@@ -4,9 +4,9 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'microcms-nuxt-jamstack-blog',
+    title: '五島ブログ',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'ja',
     },
     meta: [
       { charset: 'utf-8' },
@@ -14,10 +14,17 @@ export default {
       { hid: 'description', name: 'description', content: '' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    bodyAttrs: {
+      class: 'body-class',
+    },
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['@/assets/css/main.scss'],
+
+  // tailwindcss: {
+  //   cssPath: '~/assets/tailwind.scss'
+  // },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -32,12 +39,14 @@ export default {
     '@nuxtjs/composition-api/module',
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
+    '@nuxtjs/tailwindcss',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/dayjs',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -45,6 +54,17 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  // https://github.com/nuxt-community/dayjs-module
+  dayjs: {
+    locales: ['ja'],
+    defaultLocale: 'ja',
+    // defaultTimeZone: 'Asia/Tokyo',
+    // plugins: [
+    //   'utc', // import 'dayjs/plugin/utc'
+    //   'timezone' // import 'dayjs/plugin/timezone'
+    // ] // Your Day.js plugin
+  },
 
   publicRuntimeConfig: {
     API_KEY: process.env.API_KEY,

@@ -1,36 +1,58 @@
 <template>
-  <ul>
-    <li v-for="content in blogList.contents" :key="content.id">
-      <nuxt-link :to="`/${content.id}`">
-        {{ content.title }}
-      </nuxt-link>
-    </li>
-  </ul>
+  <div id="container">
+    <header
+      class="
+        h-16
+        sticky
+        top-0
+        z-10
+        flex flex-wrap
+        justify-center
+        content-center
+      "
+      style="background-color: #fcfaf2"
+    >
+      <h1 class="">五島ブログ</h1>
+    </header>
+    <div class="flex justify-center">
+      <h2 class="font-medium">ブログ新着</h2>
+    </div>
+    <PostList />
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+    <p>コンテンツ</p>
+  </div>
 </template>
-
-<script lang="ts">
-import {
-  defineComponent,
-  ref,
-  useFetch,
-  useContext,
-} from '@nuxtjs/composition-api'
-import { BlogListResponse } from '@/types/blog'
-
-export default defineComponent({
-  setup() {
-    const blogList = ref<BlogListResponse>({} as BlogListResponse)
-    const { $config, $axios } = useContext()
-    useFetch(async () => {
-      const { data } = await $axios.get<BlogListResponse>(
-        `${$config.BASE_API_URL}/examples`,
-        {
-          headers: { 'X-API-KEY': $config.API_KEY },
-        }
-      )
-      blogList.value = data
-    })
-    return { blogList }
-  },
-})
-</script>
