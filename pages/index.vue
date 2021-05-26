@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="content in contents" :key="content.id">
+    <li v-for="content in blogList.contents" :key="content.id">
       <nuxt-link :to="`/${content.id}`">
         {{ content.title }}
       </nuxt-link>
@@ -8,14 +8,29 @@
   </ul>
 </template>
 
-<script>
-import axios from 'axios'
-export default {
-  async asyncData({ $config }) {
-    const { data } = await axios.get(`${$config.BASE_API_URL}/examples`, {
-      headers: { 'X-API-KEY': $config.API_KEY },
+<script lang="ts">
+import {
+  defineComponent,
+  ref,
+  useFetch,
+  useContext,
+} from '@nuxtjs/composition-api'
+import { BlogListResponse } from '@/types/blog'
+
+export default defineComponent({
+  setup() {
+    const blogList = ref<BlogListResponse>({} as BlogListResponse)
+    const { $config, $axios } = useContext()
+    useFetch(async () => {
+      const { data } = await $axios.get<BlogListResponse>(
+        `${$config.BASE_API_URL}/examples`,
+        {
+          headers: { 'X-API-KEY': $config.API_KEY },
+        }
+      )
+      blogList.value = data
     })
-    return data
+    return { blogList }
   },
-}
+})
 </script>
