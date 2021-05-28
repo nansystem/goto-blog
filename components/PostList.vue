@@ -38,6 +38,32 @@
         }}</time>
       </nuxt-link>
     </article>
+    <div class="text-center text-sm text-gray-400 py-2">
+      {{ pagination.page }} ページ(全{{ pagination.allPage }}ページ中)
+    </div>
+    <div class="flex text-center border-t-2 border-b-2 py-3">
+      <NuxtLink
+        class="flex-grow border-r-2"
+        :class="[
+          !pagination.hasPrev ? ['pointer-events-none', 'text-gray-300'] : '',
+        ]"
+        :to="{
+          name: pagination.prevPage === 1 ? 'index' : 'page',
+          params: { p: pagination.prevPage },
+        }"
+      >
+        前のページ
+      </NuxtLink>
+      <NuxtLink
+        class="flex-grow"
+        :class="[
+          !pagination.hasNext ? ['pointer-events-none', 'text-gray-300'] : '',
+        ]"
+        :to="{ name: 'page', params: { p: pagination.nextPage } }"
+      >
+        次のページ
+      </NuxtLink>
+    </div>
   </div>
 </template>
 
@@ -47,23 +73,54 @@ import {
   ref,
   useFetch,
   useContext,
+  computed,
+  reactive,
 } from '@nuxtjs/composition-api'
 import { BlogListResponse } from '@/types/blog'
 
 export default defineComponent({
   setup() {
-    const blogList = ref<BlogListResponse>({} as BlogListResponse)
-    const { $config, $axios } = useContext()
+    const { $config, $axios, route } = useContext()
+    const blogList = ref<BlogListResponse>({
+      contents: [],
+      totalCount: 0,
+      offset: 0,
+      limit: 0,
+    } as BlogListResponse)
+    const limit = 10
+    // params not updating ref https://github.com/nuxt/nuxt.js/issues/1546#issuecomment-326267738
+    const page = computed<number>(() => Number(route.value.params.p) || 1)
+    const allPage = computed<number>(() =>
+      Math.ceil(blogList.value.totalCount / limit)
+    )
+    const hasPrev = computed<boolean>(() => page.value - 1 > 0)
+    const prevPage = computed<number>(() => page.value - 1)
+    const hasNext = computed<boolean>(
+      () => blogList.value.totalCount - page.value * limit > 0
+    )
+    const nextPage = computed<number>(() => page.value + 1)
     useFetch(async () => {
       const { data } = await $axios.get<BlogListResponse>(
-        `${$config.BASE_API_URL}/blogs`,
+        `${$config.BASE_API_URL}/blogs?limit=${limit}&offset=${
+          (page.value - 1) * limit
+        }`,
         {
           headers: { 'X-API-KEY': $config.API_KEY },
         }
       )
       blogList.value = data
     })
-    return { blogList }
+    // Write operation failed: computed value is readonly
+    // ref https://polidog.jp/2021/03/27/nuxt_composition_api/
+    const pagination = reactive({
+      page,
+      allPage,
+      hasPrev,
+      prevPage,
+      hasNext,
+      nextPage,
+    })
+    return { blogList, pagination }
   },
 })
 </script>

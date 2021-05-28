@@ -70,4 +70,14 @@ export default {
     API_KEY: process.env.API_KEY,
     BASE_API_URL: process.env.BASE_API_URL,
   },
+
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        path: '/page/:p',
+        component: resolve(__dirname, 'pages/index.vue'),
+        name: 'page',
+      })
+    },
+  },
 }
