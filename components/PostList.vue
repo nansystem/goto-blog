@@ -1,12 +1,11 @@
 <template>
-  <div>
+  <div class="mt-8 px-4">
     <article
       v-for="content in blogList.contents"
       :key="content.id"
-      class="mb-8"
+      class="mb-12"
     >
       <nuxt-link :to="`/${content.id}`">
-        {{ content.categories[0].name }}
         <!-- <picture>
           <source type="image/webp"
             :srcset="`${content.thumbnail.url}?fm=webp&amp;w=160&amp;h=160 1x,
@@ -24,12 +23,19 @@
             :src="`${content.thumbnail.url}?q=80&ar=2:1&fit=crop&fp-y=0.5`"
           />
         </picture>
-        <time class="text-sm text-gray-500">{{
+        <h5
+          v-if="content.categories.length > 0"
+          class="my-4 text-xs text-green-700"
+          style="color: #0367a6"
+        >
+          {{ content.categories[0].name }}
+        </h5>
+        <h3 class="mt-4 font-bold text-lg">{{ content.title }}</h3>
+        <time class="mt-0.5 text-xs text-gray-500">{{
           `${$dayjs(content.createdAt).year()}年${
             $dayjs(content.createdAt).month() + 1
           }月${$dayjs(content.createdAt).date()}日`
         }}</time>
-        <h3>{{ content.title }}</h3>
       </nuxt-link>
     </article>
   </div>
