@@ -1,10 +1,10 @@
 import { ContentResponse, ListContentsResponse } from "./api";
-// import { TagResponse } from "./tag";
+import { CategoryResponse } from "./category";
 
 export type BlogListResponse = ListContentsResponse<BlogResponse>;
 
 export type BlogResponse = ContentResponse<{
   title?: string;
   body?: string;
-//   tags?: TagResponse[];
+  categories?: CategoryResponse[];
 }>;

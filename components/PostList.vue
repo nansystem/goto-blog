@@ -32,11 +32,7 @@
             {{ content.categories[0].name }}
           </h5>
           <h3 class="mt-4 font-bold text-lg">{{ content.title }}</h3>
-          <time class="mt-0.5 text-xs text-gray-500">{{
-            `${$dayjs(content.createdAt).year()}年${
-              $dayjs(content.createdAt).month() + 1
-            }月${$dayjs(content.createdAt).date()}日`
-          }}</time>
+          <Time :datetime-text="content.createdAt" />
         </nuxt-link>
       </article>
     </div>
