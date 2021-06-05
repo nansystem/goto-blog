@@ -3,6 +3,11 @@
     <Header />
     <div class="max-w-screen-xl mx-auto lg:flex lg:flex-wrap justify-between">
       <main class="main lg:flex-1 lg:order-1">
+        <h1 class="mt-8 mx-4 border-b text-center">
+          <span class="text-lg font-bold inline-block border-b border-blue"
+            >「{{ categoryName }}」</span
+          >の記事一覧
+        </h1>
         <PostList :blog-list="blogList" :pagination="pagination" />
       </main>
       <aside class="lg:w-1/3 xl:w-1/4 sidebar lg:flex-initial lg:order-2">
@@ -51,6 +56,16 @@ export default defineComponent({
       hasNext: false,
       next: { name: 'index' },
     })
+    const categoryName = computed<string>({
+      get: () => {
+        return (
+          (blogList.value.contents[0]?.categories?.[0] &&
+            blogList.value.contents[0].categories[0].name) ||
+          ''
+        )
+      },
+      set: () => {},
+    })
 
     useFetch(async () => {
       const { data } = await $axios.get<BlogListResponse>(
@@ -82,7 +97,7 @@ export default defineComponent({
         },
       }
     })
-    return { blogList, pagination }
+    return { blogList, pagination, categoryName }
   },
 })
 </script>
