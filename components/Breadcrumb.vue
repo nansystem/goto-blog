@@ -13,6 +13,7 @@
         itemtype="https://schema.org/ListItem"
       >
         <nuxt-link :key="b.link" itemprop="item" :to="b.link">
+          <!-- <IconHome v-if="i === 0" class="h-4 w-4 inline-block -mt-1 text-gray-500" /> -->
           <span itemprop="name">{{ b.name }}</span></nuxt-link
         >
         <meta itemprop="position" :content="i + 1" />
@@ -29,10 +30,6 @@ export type Breadcrumb = {
   link: string
 }
 
-type Props = {
-  breadcrumbs: Breadcrumb[]
-}
-
 export default defineComponent({
   props: {
     breadcrumbs: {
@@ -40,10 +37,10 @@ export default defineComponent({
       default: () => [],
     },
   },
-  setup(props: Props) {
+  setup({ breadcrumbs }) {
     let bs = [{ name: '五島ブログ', link: '/' }]
-    if (props.breadcrumbs.length > 0) {
-      bs = bs.concat(props.breadcrumbs)
+    if (breadcrumbs.length > 0) {
+      bs = bs.concat(breadcrumbs)
     }
     return {
       bs,

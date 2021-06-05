@@ -8,3 +8,5 @@ export type BlogResponse = ContentResponse<{
   body?: string;
   categories?: CategoryResponse[];
 }>;
+
+export type CategoryListResponse = ListContentsResponse<CategoryResponse>;

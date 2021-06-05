@@ -5,10 +5,6 @@
 <script lang="ts">
 import { computed, defineComponent, useContext } from '@nuxtjs/composition-api'
 
-type Props = {
-  datetimeText: string
-}
-
 export default defineComponent({
   props: {
     datetimeText: {
@@ -16,12 +12,12 @@ export default defineComponent({
       default: '',
     },
   },
-  setup(props: Props) {
+  setup({ datetimeText }) {
     const { $dayjs } = useContext()
     const formattedDate = computed(() => {
-      const year = $dayjs(props.datetimeText).year()
-      const month = $dayjs(props.datetimeText).month() + 1
-      const date = $dayjs(props.datetimeText).date()
+      const year = $dayjs(datetimeText).year()
+      const month = $dayjs(datetimeText).month() + 1
+      const date = $dayjs(datetimeText).date()
       return `${year}年${month}月${date}日`
     })
     return {

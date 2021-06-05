@@ -3,11 +3,7 @@
     <Header />
     <div class="max-w-screen-xl mx-auto lg:flex lg:flex-wrap justify-between">
       <main class="main lg:flex-1 lg:order-1">
-        <PostList
-          v-if="blogList.totalCount > 0"
-          :blog-list="blogList"
-          :pagination="pagination"
-        />
+        <PostList :blog-list="blogList" :pagination="pagination" />
       </main>
       <aside class="lg:w-1/3 xl:w-1/4 sidebar lg:flex-initial lg:order-2">
         <div class="my-8 px-4 mx-auto md:mx-4 lg:mx-6">
@@ -76,11 +72,14 @@ export default defineComponent({
         allPage: Math.ceil(totalCount / limit),
         hasPrev: page.value - 1 > 0,
         prev: {
-          name: page.value - 1 === 1 ? 'index' : 'pages',
-          params: { p: (page.value - 1).toString() },
+          name: page.value - 1 === 1 ? 'category-categoryId' : 'categories',
+          params: { p: (page.value - 1).toString(), categoryId },
         },
         hasNext: totalCount - page.value * limit > 0,
-        next: { name: 'pages', params: { p: (page.value + 1).toString() } },
+        next: {
+          name: 'categories',
+          params: { p: (page.value + 1).toString(), categoryId },
+        },
       }
     })
     return { blogList, pagination }

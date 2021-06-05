@@ -9,7 +9,7 @@
         <div v-if="Object.keys(blog).length !== 0">
           <Breadcrumb :breadcrumbs="firstBreadcrumbs" />
           <div class="mt-4">
-            <picture>
+            <picture v-if="blog.thumbnail">
               <img
                 :src="`${blog.thumbnail.url}?q=80&ar=2:1&fit=crop&fp-y=0.5`"
               />

@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-hidden shadow my-3">
+  <div class="overflow-hidden shadow my-4">
     <img
       src="https://images.microcms-assets.io/assets/66b6ae18c90047bf84bb5455ae1e5899/aa323d803214427ebe8073dec08af277/profile_bg2.jpg?w=400&ar=2:1&fit=crop"
       class="w-full"
