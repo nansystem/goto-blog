@@ -53,17 +53,21 @@ export default defineComponent({
   setup() {
     const blog = ref<BlogResponse>({} as BlogResponse)
     const body = ref<string>('')
-    const { $config, $axios, route } = useContext()
+    const { $config, $axios, route, redirect } = useContext()
     useFetch(async () => {
       const slug = route.value.params.slug
-      const { data } = await $axios.get<BlogResponse>(
-        `${$config.BASE_API_URL}/blogs/${slug}`,
-        {
-          headers: { 'X-API-KEY': $config.API_KEY },
-        }
-      )
-      blog.value = data
-      body.value = marked(blog.value?.body || '')
+      try {
+        const { data } = await $axios.get<BlogResponse>(
+          `${$config.BASE_API_URL}/blogs/${slug}`,
+          {
+            headers: { 'X-API-KEY': $config.API_KEY },
+          }
+        )
+        blog.value = data
+        body.value = marked(blog.value?.body || '')
+      } catch (e) {
+        redirect(404, '/404')
+      }
     })
     const breadcrumbs = computed<Breadcrumb[]>({
       get: () => {

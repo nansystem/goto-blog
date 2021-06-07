@@ -1,4 +1,4 @@
-import axios from 'axios'
+import { sortRoutes } from '@nuxt/utils'
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
@@ -85,26 +85,16 @@ export default {
         component: resolve(__dirname, 'pages/category/_categoryId/index.vue'),
         name: 'categories',
       })
+      routes.push({
+        path: '*',
+        component: resolve(__dirname, 'pages/404.vue'),
+        name: 'custom',
+      })
+      sortRoutes(routes)
     },
   },
 
-  generate: {
-    interval: 100,
-    async routes() {
-      const range = (start, end) =>
-        [...Array(end - start + 1)].map((_, i) => start + i)
-      const limit = 10
+  generate: {},
 
-      const pages = await axios
-        .get(`${process.env.BASE_API_URL}/blogs?limit=0`, {
-          headers: { 'X-API-KEY': process.env.API_KEY },
-        })
-        .then((res) => {
-          return range(1, Math.ceil(res.data.totalCount / limit)).map((p) => ({
-            route: `/page/${p}`,
-          }))
-        })
-      return pages
-    },
-  },
+  loading: { color: '#0367a6' },
 }

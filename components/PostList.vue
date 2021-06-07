@@ -40,23 +40,27 @@
     </div>
     <div class="flex text-center border-t-2 border-b-2 py-3">
       <NuxtLink
+        v-if="pagination.hasPrev"
         class="flex-grow border-r-2"
-        :class="[
-          !pagination.hasPrev ? ['pointer-events-none', 'text-gray-300'] : '',
-        ]"
         :to="{ name: pagination.prev.name, params: pagination.prev.params }"
       >
         前のページ
       </NuxtLink>
+      <span
+        v-else
+        class="flex-grow border-r-2 pointer-events-none text-gray-300"
+        >前のページ</span
+      >
       <NuxtLink
+        v-if="pagination.hasNext"
         class="flex-grow"
-        :class="[
-          !pagination.hasNext ? ['pointer-events-none', 'text-gray-300'] : '',
-        ]"
         :to="{ name: pagination.next.name, params: pagination.next.params }"
       >
         次のページ
       </NuxtLink>
+      <span v-else class="flex-grow pointer-events-none text-gray-300"
+        >次のページ</span
+      >
     </div>
   </div>
 </template>
