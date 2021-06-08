@@ -1,19 +1,46 @@
 import { sortRoutes } from '@nuxt/utils'
 
+const title = '五島しまあそび'
+const description = '五島列島福江島の日常ブログです。'
+const uri = 'https://gotoretto.com'
+
 export default {
+  publicRuntimeConfig: {
+    API_KEY: process.env.API_KEY,
+    BASE_API_URL: process.env.BASE_API_URL,
+  },
+
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: '五島ブログ',
     htmlAttrs: {
+      prefix: 'og: http://ogp.me/ns#',
       lang: 'ja',
     },
+    title,
+    titleTemplate: '%s |' + ' ' + title,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '五島ブログ' },
+      { hid: 'description', name: 'description', content: description },
+      { hid: 'og:site_name', property: 'og:site_name', content: title },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:url', property: 'og:url', content: uri },
+      { hid: 'og:title', property: 'og:title', content: title },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content: description,
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: uri + '/images/ogp.png',
+      },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@nan_system' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     bodyAttrs: {
@@ -81,11 +108,6 @@ export default {
     //   'utc', // import 'dayjs/plugin/utc'
     //   'timezone' // import 'dayjs/plugin/timezone'
     // ] // Your Day.js plugin
-  },
-
-  publicRuntimeConfig: {
-    API_KEY: process.env.API_KEY,
-    BASE_API_URL: process.env.BASE_API_URL,
   },
 
   router: {

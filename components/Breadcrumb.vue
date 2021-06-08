@@ -38,7 +38,7 @@ export default defineComponent({
     },
   },
   setup({ breadcrumbs }) {
-    let bs = [{ name: '五島ブログ', link: '/' }]
+    let bs = [{ name: '五島しまあそび', link: '/' }]
     if (breadcrumbs.length > 0) {
       bs = bs.concat(breadcrumbs)
     }

@@ -85,5 +85,8 @@ export default defineComponent({
     })
     return { blogList, pagination }
   },
+  head: {
+    titleTemplate: `五島しまあそび | 五島列島福江島の日常ブログです。`,
+  },
 })
 </script>

@@ -11,6 +11,6 @@
       bg-blue
     "
   >
-    <nuxt-link to="/"><h1 class="text-white">五島ブログ</h1></nuxt-link>
+    <nuxt-link to="/"><h1 class="text-white">五島しまあそび</h1></nuxt-link>
   </header>
 </template>
