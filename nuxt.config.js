@@ -1,4 +1,7 @@
 import { sortRoutes } from '@nuxt/utils'
+import axios from 'axios'
+
+const { API_KEY, BASE_API_URL } = process.env
 
 const title = '五島しまあそび'
 const description = '五島列島福江島の日常ブログです。'
@@ -6,8 +9,8 @@ const uri = 'https://gotoretto.com'
 
 export default {
   publicRuntimeConfig: {
-    API_KEY: process.env.API_KEY,
-    BASE_API_URL: process.env.BASE_API_URL,
+    API_KEY,
+    BASE_API_URL,
   },
 
   // Target: https://go.nuxtjs.dev/config-target
@@ -77,6 +80,8 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/dayjs',
     '@nuxtjs/google-gtag',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/feed',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -104,11 +109,6 @@ export default {
   dayjs: {
     locales: ['ja'],
     defaultLocale: 'ja',
-    // defaultTimeZone: 'Asia/Tokyo',
-    // plugins: [
-    //   'utc', // import 'dayjs/plugin/utc'
-    //   'timezone' // import 'dayjs/plugin/timezone'
-    // ] // Your Day.js plugin
   },
 
   router: {
@@ -140,4 +140,45 @@ export default {
     id: 'G-SZ6YQSSNSD',
     debug: false,
   },
+
+  sitemap: {
+    path: '/sitemap.xml',
+    hostname: uri,
+    exclude: ['/draft', '/404'],
+    gzip: true,
+    trailingSlash: true,
+  },
+
+  feed: [
+    {
+      path: '/feed.xml',
+      async create(feed) {
+        feed.options = {
+          title,
+          link: `${uri}/feed.xml`,
+          description,
+        }
+
+        const posts = await axios
+          .get(`${API_KEY}/blogs`, {
+            headers: { 'X-API-KEY': API_KEY },
+          })
+          .then((res) => res.data.contents)
+
+        posts.forEach((post) => {
+          feed.addItem({
+            title: post.title,
+            id: post.id,
+            link: `https://gotoretto.com/${post.id}/`,
+            description: post.description || '',
+            content: post.description || '',
+            date: new Date(post.publishedAt || post.createdAt),
+            image: post.ogimage && post.ogimage.url,
+          })
+        })
+      },
+      cacheTime: 1000 * 60 * 15,
+      type: 'rss2',
+    },
+  ],
 }
