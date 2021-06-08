@@ -76,6 +76,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/dayjs',
+    '@nuxtjs/google-gtag',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -134,4 +135,9 @@ export default {
   generate: {},
 
   loading: { color: '#0367a6' },
+
+  'google-gtag': {
+    id: 'G-SZ6YQSSNSD',
+    debug: false,
+  },
 }
