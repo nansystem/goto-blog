@@ -44,6 +44,7 @@ import {
   useFetch,
   useContext,
   computed,
+  useMeta,
 } from '@nuxtjs/composition-api'
 import { BlogResponse } from '@/types/blog'
 import marked from 'marked'
@@ -51,6 +52,7 @@ import { Breadcrumb } from '~/components/Breadcrumb.vue'
 
 export default defineComponent({
   setup() {
+    const { title, meta } = useMeta()
     const blog = ref<BlogResponse>({} as BlogResponse)
     const body = ref<string>('')
     const { $config, $axios, route, redirect } = useContext()
@@ -65,6 +67,35 @@ export default defineComponent({
         )
         blog.value = data
         body.value = marked(blog.value?.body || '')
+
+        title.value = blog.value.title
+        meta.value = [
+          {
+            hid: 'description',
+            name: 'description',
+            content: blog.value.body || '',
+          },
+          {
+            hid: 'og:title',
+            name: 'og:title',
+            content: blog.value.title || '',
+          },
+          {
+            hid: 'og:image',
+            property: 'og:image',
+            content: blog.value.thumbnail?.url || '',
+          },
+          {
+            hid: 'og:description',
+            property: 'og:description',
+            content: blog.value.description || '',
+          },
+          {
+            hid: 'og:url',
+            property: 'og:url',
+            content: `https://gotoretto.com/${slug}`,
+          },
+        ]
       } catch (e) {
         redirect(404, '/404')
       }
@@ -89,5 +120,6 @@ export default defineComponent({
     })
     return { blog, body, breadcrumbs, firstBreadcrumbs }
   },
+  head: {},
 })
 </script>
