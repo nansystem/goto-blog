@@ -10,6 +10,26 @@
           <Breadcrumb :breadcrumbs="firstBreadcrumbs" />
           <div class="mt-4">
             <picture v-if="blog.thumbnail">
+              <source
+                media="(min-width: 1160px)"
+                type="image/webp"
+                :srcset="`${blog.thumbnail.url}?w=820&fm=webp, ${blog.thumbnail.url}?w=1640&fm=webp 2x`"
+              />
+              <source
+                media="(min-width: 820px)"
+                type="image/webp"
+                :srcset="`${blog.thumbnail.url}?w=740&fm=webp, ${blog.thumbnail.url}?w=1480&fm=webp 2x`"
+              />
+              <source
+                media="(min-width: 768px)"
+                type="image/webp"
+                :srcset="`${blog.thumbnail.url}?w=728&fm=webp, ${blog.thumbnail.url}?w=1456&fm=webp 2x`"
+              />
+              <source
+                media="(max-width: 768px)"
+                type="image/webp"
+                :srcset="`${blog.thumbnail.url}?w=375&fm=webp, ${blog.thumbnail.url}?w=750&fm=webp 2x`"
+              />
               <img
                 :src="`${blog.thumbnail.url}?q=80&ar=2:1&fit=crop&fp-y=0.5`"
               />
