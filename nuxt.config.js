@@ -150,7 +150,7 @@ export default {
         }
 
         const posts = await axios
-          .get(`${API_KEY}/blogs`, {
+          .get(`${BASE_API_URL}/blogs`, {
             headers: { 'X-API-KEY': API_KEY },
           })
           .then((res) => res.data.contents)
@@ -159,11 +159,11 @@ export default {
           feed.addItem({
             title: post.title,
             id: post.id,
-            link: `https://gotoretto.com/${post.id}/`,
+            link: `${uri}/${post.id}/`,
             description: post.description || '',
             content: post.description || '',
             date: new Date(post.publishedAt || post.createdAt),
-            image: post.ogimage && post.ogimage.url,
+            image: post.thumbnail && post.thumbnail.url,
           })
         })
       },
