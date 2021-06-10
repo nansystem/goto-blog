@@ -72,6 +72,7 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/eslint-module',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -92,17 +93,6 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {
-      // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue|ts)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/,
-        })
-      }
-    },
   },
 
   // https://github.com/nuxt-community/dayjs-module
@@ -181,4 +171,8 @@ export default {
       type: 'rss2',
     },
   ],
+
+  eslint: {
+    fix: true,
+  },
 }
