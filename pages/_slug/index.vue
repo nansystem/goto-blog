@@ -11,27 +11,31 @@
           <div class="mt-4">
             <picture v-if="blog.thumbnail">
               <source
-                media="(min-width: 1160px)"
+                media="(min-width: 1024px)"
                 type="image/webp"
-                :srcset="`${blog.thumbnail.url}?w=820&fm=webp, ${blog.thumbnail.url}?w=1640&fm=webp 2x`"
-              />
-              <source
-                media="(min-width: 820px)"
-                type="image/webp"
-                :srcset="`${blog.thumbnail.url}?w=740&fm=webp, ${blog.thumbnail.url}?w=1480&fm=webp 2x`"
+                :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=936&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=1872&fm=webp 2x`"
               />
               <source
                 media="(min-width: 768px)"
                 type="image/webp"
-                :srcset="`${blog.thumbnail.url}?w=728&fm=webp, ${blog.thumbnail.url}?w=1456&fm=webp 2x`"
+                :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=736&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=1472&fm=webp 2x`"
               />
               <source
-                media="(max-width: 768px)"
+                media="(min-width: 640px)"
                 type="image/webp"
-                :srcset="`${blog.thumbnail.url}?w=375&fm=webp, ${blog.thumbnail.url}?w=750&fm=webp 2x`"
+                :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=608&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=1216&fm=webp 2x`"
+              />
+              <source
+                media="(max-width: 640px)"
+                type="image/webp"
+                :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=608&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=1216&fm=webp 2x`"
               />
               <img
-                :src="`${blog.thumbnail.url}?q=80&ar=2:1&fit=crop&fp-y=0.5`"
+                :src="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=936`"
+                :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=1872 2x`"
+                decoding="async"
+                width="936"
+                height="468"
               />
             </picture>
             <div v-for="b in breadcrumbs" :key="b.link" class="mt-4">

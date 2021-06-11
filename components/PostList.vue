@@ -28,14 +28,25 @@
             <source
               media="(min-width: 768px)"
               type="image/webp"
-              :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=375&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=750&fm=webp 2x`"
+              :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=440&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=880&fm=webp 2x`"
             />
             <source
-              media="(max-width: 768px)"
+              media="(min-width: 640px)"
               type="image/webp"
-              :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=375&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=750&fm=webp 2x`"
+              :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=735&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=1470&fm=webp 2x`"
             />
-            <img :src="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=440`" />
+            <source
+              media="(max-width: 640px)"
+              type="image/webp"
+              :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=608&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=1216&fm=webp 2x`"
+            />
+            <img
+              :src="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=440`"
+              :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=880&fm=webp 2x`"
+              decoding="async"
+              width="735"
+              height="367.5"
+            />
           </picture>
           <h5
             v-if="blog.categories.length > 0"
