@@ -21,26 +21,21 @@
           </picture>-->
           <picture v-if="blog.thumbnail">
             <source
-              media="(min-width: 1160px)"
+              media="(min-width: 1024px)"
               type="image/webp"
-              :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=820&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=1640&fm=webp 2x`"
-            />
-            <source
-              media="(min-width: 820px)"
-              type="image/webp"
-              :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=740&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=1480&fm=webp 2x`"
+              :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=440&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=880&fm=webp 2x`"
             />
             <source
               media="(min-width: 768px)"
               type="image/webp"
-              :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=728&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=1456&fm=webp 2x`"
+              :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=375&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=750&fm=webp 2x`"
             />
             <source
               media="(max-width: 768px)"
               type="image/webp"
               :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=375&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=750&fm=webp 2x`"
             />
-            <img :src="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5`" />
+            <img :src="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=440`" />
           </picture>
           <h5
             v-if="blog.categories.length > 0"
