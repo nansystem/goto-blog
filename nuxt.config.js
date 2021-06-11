@@ -93,6 +93,18 @@ export default {
     /*
      ** You can extend webpack config here
      */
+
+    postcss: {
+      // problem 「Invalid options object. PostCSS Loader has been initialized using an options object that does not match the API schema.」
+      // solution https://github.com/JeffreyWay/laravel-mix/issues/2471#issuecomment-701557916
+      plugins: {
+        'postcss-import': {},
+        'postcss-url': {},
+        'tailwindcss': {},
+        'postcss-nested':{},
+        'autoprefixer':{},
+      },
+    }
   },
 
   // https://github.com/nuxt-community/dayjs-module

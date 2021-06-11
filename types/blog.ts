@@ -10,8 +10,8 @@ export type Image = {
 export type BlogResponse = ContentResponse<{
   title: string
   description: string
-  body: string
   thumbnail?: Image
+  body: string
   categories?: CategoryResponse[]
 }>
 

@@ -45,7 +45,7 @@
             <h1 class="text-2xl mt-4">{{ blog.title }}</h1>
             <Time :datetime-text="blog.createdAt" />
             <!-- eslint-disable-next-line vue/no-v-html -->
-            <div class="mt-4 post" v-html="body"></div>
+            <div class="mt-4 post" v-html="blog.body"></div>
           </div>
         </div>
       </main>
@@ -67,14 +67,12 @@ import {
   useMeta,
 } from '@nuxtjs/composition-api'
 import { BlogResponse } from '@/types/blog'
-import marked from 'marked'
 import { Breadcrumb } from '~/components/Breadcrumb.vue'
 
 export default defineComponent({
   setup() {
     const { title, meta } = useMeta()
     const blog = ref<BlogResponse>({} as BlogResponse)
-    const body = ref<string>('')
     const { $config, $axios, route, redirect } = useContext()
     useFetch(async () => {
       const slug = route.value.params.slug
@@ -86,7 +84,6 @@ export default defineComponent({
           }
         )
         blog.value = data
-        body.value = marked(blog.value?.body || '')
 
         title.value = blog.value.title
         meta.value = [
@@ -138,8 +135,25 @@ export default defineComponent({
       get: () => (breadcrumbs.value.length > 0 ? [breadcrumbs.value[0]] : []),
       set: () => {},
     })
-    return { blog, body, breadcrumbs, firstBreadcrumbs }
+    return { blog, breadcrumbs, firstBreadcrumbs }
   },
   head: {},
 })
 </script>
+
+<style lang="postcss">
+.post {
+  h1 {
+    @apply text-3xl;
+  }
+  h2 {
+    @apply text-2xl;
+  }
+  h3 {
+    @apply text-xl;
+  }
+  h4 {
+    @apply text-lg;
+  }
+}
+</style>
