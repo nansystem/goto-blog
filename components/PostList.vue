@@ -7,45 +7,33 @@
         class="box-border md:w-1/2 md:px-2 lg:px-3 mb-12"
       >
         <nuxt-link :to="`/${blog.id}`">
-          <!-- <picture>
-            <source type="image/webp"
-              :srcset="`${content.thumbnail.url}?fm=webp&amp;w=160&amp;h=160 1x,
-                      ${content.thumbnail.url}?fm=webp&amp;w=320&amp;h=320 2x`">
-            <img class=""
-              :srcset="`${content.thumbnail.url}?w=160&amp;h=160 1x,
-                      ${content.thumbnail.url}?w=320&amp;h=320 2x`"
-              :src="`${content.thumbnail.url}?w=160&amp;h=160`"
-              alt=""
-              width="160"
-              height="160">
-          </picture>-->
           <picture v-if="blog.thumbnail">
             <source
               media="(min-width: 1024px)"
               type="image/webp"
-              :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=440&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=880&fm=webp 2x`"
+              :srcset="`${blog.thumbnail.url}?ar=3:2&fit=crop&w=440&fm=webp, ${blog.thumbnail.url}?ar=3:2&fit=crop&w=880&fm=webp 2x`"
             />
             <source
               media="(min-width: 768px)"
               type="image/webp"
-              :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=440&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=880&fm=webp 2x`"
+              :srcset="`${blog.thumbnail.url}?ar=3:2&fit=crop&w=440&fm=webp, ${blog.thumbnail.url}?ar=3:2&fit=crop&w=880&fm=webp 2x`"
             />
             <source
               media="(min-width: 640px)"
               type="image/webp"
-              :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=735&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=1470&fm=webp 2x`"
+              :srcset="`${blog.thumbnail.url}?ar=3:2&fit=crop&w=735&fm=webp, ${blog.thumbnail.url}?ar=3:2&fit=crop&w=1470&fm=webp 2x`"
             />
             <source
               media="(max-width: 640px)"
               type="image/webp"
-              :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=608&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=1216&fm=webp 2x`"
+              :srcset="`${blog.thumbnail.url}?ar=3:2&fit=crop&w=608&fm=webp, ${blog.thumbnail.url}?ar=3:2&fit=crop&w=1216&fm=webp 2x`"
             />
             <img
-              :src="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=440`"
-              :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=880&fm=webp 2x`"
+              :src="`${blog.thumbnail.url}?ar=3:2&fit=crop&w=440`"
+              :srcset="`${blog.thumbnail.url}?ar=3:2&fit=crop&w=880&fm=webp 2x`"
               decoding="async"
               width="735"
-              height="367.5"
+              height="490"
             />
           </picture>
           <h5

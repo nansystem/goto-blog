@@ -100,11 +100,11 @@ export default {
       plugins: {
         'postcss-import': {},
         'postcss-url': {},
-        'tailwindcss': {},
-        'postcss-nested':{},
-        'autoprefixer':{},
+        tailwindcss: {},
+        'postcss-nested': {},
+        autoprefixer: {},
       },
-    }
+    },
   },
 
   // https://github.com/nuxt-community/dayjs-module

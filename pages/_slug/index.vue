@@ -13,29 +13,29 @@
               <source
                 media="(min-width: 1024px)"
                 type="image/webp"
-                :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=936&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=1872&fm=webp 2x`"
+                :srcset="`${blog.thumbnail.url}?ar=3:2&fit=crop&w=936&fm=webp, ${blog.thumbnail.url}?ar=3:2&fit=crop&w=1872&fm=webp 2x`"
               />
               <source
                 media="(min-width: 768px)"
                 type="image/webp"
-                :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=736&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=1472&fm=webp 2x`"
+                :srcset="`${blog.thumbnail.url}?ar=3:2&fit=crop&w=736&fm=webp, ${blog.thumbnail.url}?ar=3:2&fit=crop&w=1472&fm=webp 2x`"
               />
               <source
                 media="(min-width: 640px)"
                 type="image/webp"
-                :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=608&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=1216&fm=webp 2x`"
+                :srcset="`${blog.thumbnail.url}?ar=3:2&fit=crop&w=608&fm=webp, ${blog.thumbnail.url}?ar=3:2&fit=crop&w=1216&fm=webp 2x`"
               />
               <source
                 media="(max-width: 640px)"
                 type="image/webp"
-                :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=608&fm=webp, ${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=1216&fm=webp 2x`"
+                :srcset="`${blog.thumbnail.url}?ar=3:2&fit=crop&w=608&fm=webp, ${blog.thumbnail.url}?ar=3:2&fit=crop&w=1216&fm=webp 2x`"
               />
               <img
-                :src="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=936`"
-                :srcset="`${blog.thumbnail.url}?ar=2:1&fit=crop&fp-y=0.5&w=1872 2x`"
+                :src="`${blog.thumbnail.url}?ar=3:2&fit=crop&w=936`"
+                :srcset="`${blog.thumbnail.url}?ar=3:2&fit=crop&w=1872 2x`"
                 decoding="async"
                 width="936"
-                height="468"
+                height="624"
               />
             </picture>
             <div v-for="b in breadcrumbs" :key="b.link" class="mt-4">
