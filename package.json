@@ -28,7 +28,7 @@
     "@nuxtjs/composition-api": "^0.24.4",
     "@nuxtjs/dayjs": "^1.4.0",
     "@nuxtjs/google-gtag": "^1.0.4",
-    "@nuxtjs/sitemap": "^2.4.0",
+    "@nuxtjs/sitemap": "github:nuxt-community/sitemap-module#feat/static-crawler",
     "core-js": "^3.9.1",
     "nuxt": "^2.15.8"
   },
