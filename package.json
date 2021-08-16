@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.1",
-    "@nuxtjs/composition-api": "^0.24.4",
+    "@nuxtjs/composition-api": "^0.26.0",
     "@nuxtjs/dayjs": "^1.4.0",
     "@nuxtjs/google-gtag": "^1.0.4",
     "@nuxtjs/sitemap": "github:nuxt-community/sitemap-module#feat/static-crawler",

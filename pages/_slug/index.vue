@@ -75,11 +75,11 @@ import { Breadcrumb } from '~/components/Breadcrumb.vue'
 
 export default defineComponent({
   setup() {
-    const { title, meta } = useMeta()
     const blog = ref<BlogResponse>({} as BlogResponse)
     const { $config, $axios, route, redirect } = useContext()
+    const slug = route.value.params.slug
+
     useFetch(async () => {
-      const slug = route.value.params.slug
       try {
         const { data } = await $axios.get<BlogResponse>(
           `${$config.BASE_API_URL}/blogs/${slug}`,
@@ -88,39 +88,42 @@ export default defineComponent({
           }
         )
         blog.value = data
-
-        title.value = blog.value.title
-        meta.value = [
-          {
-            hid: 'description',
-            name: 'description',
-            content: blog.value.body || '',
-          },
-          {
-            hid: 'og:title',
-            name: 'og:title',
-            content: blog.value.title || '',
-          },
-          {
-            hid: 'og:image',
-            property: 'og:image',
-            content: blog.value.thumbnail?.url || '',
-          },
-          {
-            hid: 'og:description',
-            property: 'og:description',
-            content: blog.value.description || '',
-          },
-          {
-            hid: 'og:url',
-            property: 'og:url',
-            content: `https://gotoretto.com/${slug}`,
-          },
-        ]
       } catch (e) {
         redirect(404, '/404')
       }
     })
+
+    useMeta(() => ({
+      title: blog.value.title,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: blog.value.body || '',
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: blog.value.title || '',
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: blog.value.thumbnail?.url || '',
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: blog.value.description || '',
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: `https://gotoretto.com/${slug}`,
+        },
+      ]
+    }))
+
     const breadcrumbs = computed<Breadcrumb[]>({
       get: () => {
         if (
