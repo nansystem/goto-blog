@@ -121,7 +121,7 @@ export default defineComponent({
           property: 'og:url',
           content: `https://gotoretto.com/${slug}`,
         },
-      ]
+      ],
     }))
 
     const breadcrumbs = computed<Breadcrumb[]>({
@@ -161,6 +161,12 @@ export default defineComponent({
   }
   h4 {
     @apply text-lg;
+  }
+  a {
+    color: #0367a6;
+    text-decoration: underline;
+    word-wrap: break-word;
+    word-break: break-all;
   }
 }
 </style>

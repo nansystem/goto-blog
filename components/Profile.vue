@@ -66,7 +66,7 @@
       <h3 class="text-black text-sm bold font-sans">なんしー</h3>
       <h4 class="mt-0.5 text-xs text-gray-500">ブロガー・プログラマー</h4>
       <p class="text-left mt-4 text-grey-dark">
-        2021年に五島列島の福江島に移住した。<br />趣味はキャンプと釣り。
+        2021年に五島列島の福江島に移住した。<br />趣味はSUP、釣り、キャンプ。
       </p>
     </div>
   </div>
