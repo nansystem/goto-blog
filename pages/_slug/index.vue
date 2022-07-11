@@ -99,7 +99,7 @@ export default defineComponent({
         {
           hid: 'description',
           name: 'description',
-          content: blog.value.body || '',
+          content: blog.value.description || '',
         },
         {
           hid: 'og:title',
