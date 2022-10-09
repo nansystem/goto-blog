@@ -55,7 +55,7 @@
       </main>
 
       <aside class="lg:w-1/3 xl:w-1/4 sidebar lg:flex-initial lg:order-2">
-        <Profile class="mt-12 mx-auto p-4 md:mx-4 lg:mx-6" />
+        <Profile class="mt-12 mx-auto p-4 md:mx-4 lg:mx-6" :profile="profile" />
       </aside>
     </div>
   </div>
@@ -70,7 +70,7 @@ import {
   computed,
   useMeta,
 } from '@nuxtjs/composition-api'
-import { BlogResponse } from '@/types/blog'
+import { BlogResponse, mado, nancy, Profile } from '@/types/blog'
 import { Breadcrumb } from '~/components/Breadcrumb.vue'
 
 export default defineComponent({
@@ -138,11 +138,26 @@ export default defineComponent({
       },
       set: () => {},
     })
+
     const firstBreadcrumbs = computed<Breadcrumb[]>({
       get: () => (breadcrumbs.value.length > 0 ? [breadcrumbs.value[0]] : []),
       set: () => {},
     })
-    return { blog, breadcrumbs, firstBreadcrumbs }
+
+    const profile = computed<Profile>({
+      get: () => {
+        if (
+          blog.value.author !== undefined &&
+          blog.value.author[0] === 'madoka'
+        ) {
+          return mado
+        }
+        return nancy
+      },
+      set: () => {},
+    })
+
+    return { blog, breadcrumbs, firstBreadcrumbs, profile }
   },
   head: {},
 })
