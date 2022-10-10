@@ -1,5 +1,6 @@
 <template>
   <div class="overflow-hidden shadow my-4">
+    <div class="mb-4 border-b-2 border-blue font-bold">{{ header }}</div>
     <picture>
       <source
         media="(min-width: 1024px)"
@@ -63,7 +64,7 @@
     </div>
     <div class="text-center px-3 pb-6 pt-2">
       <h3 class="text-black text-sm bold font-sans">{{ profile.name }}</h3>
-      <h4 class="mt-0.5 text-xs text-gray-500">{{ profile.title }}</h4>
+      <!-- <h4 class="mt-0.5 text-xs text-gray-500">{{ profile.title }}</h4> -->
       <!-- prettier-ignore -->
       <p
         class="text-left mt-4 text-grey-dark"
@@ -84,6 +85,10 @@ export default defineComponent({
       default: () => {
         return nancy
       },
+    },
+    header: {
+      type: String,
+      default: 'この記事を書いた人',
     },
   },
 })

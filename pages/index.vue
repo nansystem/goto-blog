@@ -12,7 +12,7 @@
       <aside class="lg:w-1/3 xl:w-1/4 sidebar lg:flex-initial lg:order-2">
         <div class="my-8 px-4 mx-auto md:mx-4 lg:mx-6">
           <CategoryList />
-          <Profile />
+          <Profile class="p-4" header="ブログ運営者" />
         </div>
       </aside>
     </div>
@@ -24,6 +24,7 @@ import {
   defineComponent,
   ref,
   useFetch,
+  useMeta,
   useContext,
   computed,
 } from '@nuxtjs/composition-api'
@@ -83,10 +84,15 @@ export default defineComponent({
         next: { name: 'pages', params: { p: (page.value + 1).toString() } },
       }
     })
+
+    useMeta(() => ({
+      titleTemplate: `五島しまあそび | 五島列島福江島の日常ブログ${
+        page.value > 1 ? ` - ${page.value}ページ目` : ''
+      }`,
+    }))
+
     return { blogList, pagination }
   },
-  head: {
-    titleTemplate: `五島しまあそび | 五島列島福江島の日常ブログです。`,
-  },
+  head: {},
 })
 </script>
