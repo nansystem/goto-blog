@@ -148,7 +148,7 @@ export default {
     hostname: uri,
     exclude: ['/draft', '/404'],
     gzip: true,
-    trailingSlash: true,
+    trailingSlash: false,
   },
 
   feed: [
