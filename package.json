@@ -70,5 +70,8 @@
     "tailwindcss": "^2.1.2",
     "ts-jest": "^26.5.4",
     "vue-jest": "^3.0.4"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
