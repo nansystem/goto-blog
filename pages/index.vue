@@ -16,6 +16,7 @@
         </div>
       </aside>
     </div>
+    <Footer />
   </div>
 </template>
 
