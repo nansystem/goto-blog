@@ -109,26 +109,6 @@ h3 {
   font-size: 14px;
   line-height: 2.2;
 }
-.hero-mark {
-  position: absolute;
-  right: 55px;
-  top: 40px;
-  width: 260px;
-  height: 260px;
-  border: 1px solid #adc7c6;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-family: serif;
-  font-size: 43px;
-  letter-spacing: 0.12em;
-  line-height: 1.5;
-  color: #739b9e;
-  transform: rotate(-10deg);
-  background: radial-gradient(ellipse at bottom, #d5e7e2, transparent 65%);
-}
 .content-shell {
   max-width: 1200px;
   padding: 0 32px;
@@ -434,13 +414,6 @@ h3 {
   .post-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .hero-mark {
-    width: 220px;
-    height: 220px;
-    font-size: 32px;
-    right: 32px;
-    top: 85px;
-  }
 }
 @media (max-width: 640px) {
   .header-inner {
@@ -466,15 +439,6 @@ h3 {
   .hero p {
     font-size: 12px;
     max-width: 260px;
-  }
-  .hero-mark {
-    width: 140px;
-    height: 140px;
-    font-size: 21px;
-    right: -40px;
-    top: 65px;
-    opacity: 0.3;
-    z-index: -1;
   }
   .content-shell {
     padding: 0 22px;
