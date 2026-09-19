@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro'
+import PostCard from './PostCard.astro'
+import { type getListing } from '../lib/cms'
+interface Props {
+  page?: number
+  categoryId?: string
+  data: NonNullable<Awaited<ReturnType<typeof getListing>>>
+}
+const { page = 1, categoryId, data } = Astro.props
+const { categories, category, posts, totalPages } = data
+const base = categoryId ? `/category/${categoryId}` : ''
+const pageUrl = (n: number) => (n === 1 ? base || '/' : `${base}/page/${n}`)
+---
+
+<Layout
+  title={
+    category
+      ? `${category.name}の記事${page > 1 ? ` — ${page}ページ目` : ''}`
+      : page > 1
+        ? `記事一覧 — ${page}ページ目`
+        : undefined
+  }
+>
+  <section class="hero">
+    <div class="eyebrow">長崎・五島列島 / 福江島</div>
+    <h1>
+      {category ? (
+        category.name
+      ) : (
+        <>
+          島の時間を、
+          <br />
+          おすそわけ。
+        </>
+      )}
+    </h1>
+    <p>
+      {category ? (
+        `「${category.name}」にまつわる、島の日々。`
+      ) : (
+        <>
+          海のそばで暮らす、あそぶ、おいしいものを見つける。
+          <br class="desktop-break" />
+          五島列島・福江島から、日々の記録を届けます。
+        </>
+      )}
+    </p>
+    <span class="hero-mark" aria-hidden="true">
+      GOTO
+      <br />
+      ISLANDS
+    </span>
+  </section>
+  <div class="content-shell">
+    <nav class="categories" aria-label="カテゴリー">
+      <a href="/" aria-current={!categoryId ? 'page' : undefined}>
+        すべての記事
+      </a>
+      {categories.map((c) => (
+        <a
+          href={`/category/${c.id}`}
+          aria-current={c.id === categoryId ? 'page' : undefined}
+        >
+          {c.name}
+        </a>
+      ))}
+    </nav>
+    <section aria-labelledby="articles-heading">
+      <div class="section-heading">
+        <h2 id="articles-heading">
+          {category ? `${category.name}の記事` : '島からのお便り'}
+        </h2>
+        <span>{posts.totalCount} 記事</span>
+      </div>
+      {posts.contents.length ? (
+        <div class="post-grid">
+          {posts.contents.map((post, i) => (
+            <PostCard post={post} eager={i < 3} />
+          ))}
+        </div>
+      ) : (
+        <p class="empty-state">
+          記事はまだありません。次のお便りをお待ちください。
+        </p>
+      )}
+      {totalPages > 1 && (
+        <nav class="pagination" aria-label="ページ送り">
+          {page > 1 ? (
+            <a rel="prev" href={pageUrl(page - 1)}>
+              ← 前のページ
+            </a>
+          ) : (
+            <span />
+          )}
+          <span>
+            {page} / {totalPages}
+          </span>
+          {page < totalPages ? (
+            <a rel="next" href={pageUrl(page + 1)}>
+              次のページ →
+            </a>
+          ) : (
+            <span />
+          )}
+        </nav>
+      )}
+    </section>
+    <section class="about" id="about">
+      <div>
+        <span class="eyebrow">ABOUT THIS JOURNAL</span>
+        <h2>五島の暮らしと、私たち。</h2>
+      </div>
+      <div>
+        <p>
+          2021年に夫婦で五島列島の福江島へ移住。
+          <br />
+          島で出会った犬と暮らしながら、SUP、釣り、キャンプ、スイーツ巡りを楽しんでいます。
+        </p>
+        <p>
+          旅のヒントにも、ちょっとひと息つきたいときにも。
+          <br />
+          島の毎日を、のんびり読んでいってください。
+        </p>
+      </div>
+    </section>
+  </div>
+</Layout>

@@ -1,0 +1,8 @@
+---
+import { getListing } from '../../../lib/cms'
+import Listing from '../../../components/Listing.astro'
+const data = await getListing(1, Astro.params.categoryId)
+if (!data) return Astro.rewrite('/404')
+---
+
+<Listing data={data} categoryId={Astro.params.categoryId} />

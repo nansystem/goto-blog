@@ -1,0 +1,46 @@
+---
+import { type Post, formatDate, publishedDate, imageUrl } from '../lib/cms'
+interface Props {
+  post: Post
+  eager?: boolean
+}
+const { post, eager = false } = Astro.props
+---
+
+<article class="post-card">
+  <a class="card-image" href={`/${post.id}`} tabindex="-1" aria-hidden="true">
+    {post.thumbnail ? (
+      <img
+        src={imageUrl(post.thumbnail.url, 640)}
+        srcset={`${imageUrl(post.thumbnail.url, 640)} 640w, ${imageUrl(post.thumbnail.url, 960)} 960w`}
+        sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 360px"
+        width="640"
+        height="427"
+        alt=""
+        loading={eager ? 'eager' : 'lazy'}
+        decoding="async"
+      />
+    ) : (
+      <span class="image-placeholder">五島のくらし</span>
+    )}
+  </a>
+  <div class="card-content">
+    <div class="card-meta">
+      <span>{post.categories?.[0]?.name || '島の日々'}</span>
+      <time datetime={publishedDate(post)}>
+        {formatDate(publishedDate(post))}
+      </time>
+    </div>
+    <h2>
+      <a href={`/${post.id}`}>{post.title}</a>
+    </h2>
+    {post.description && <p>{post.description}</p>}
+    <a
+      class="read-more"
+      href={`/${post.id}`}
+      aria-label={`${post.title}を読む`}
+    >
+      記事を読む <span>↗</span>
+    </a>
+  </div>
+</article>

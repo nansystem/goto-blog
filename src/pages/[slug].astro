@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro'
+import {
+  getPost,
+  CmsError,
+  formatDate,
+  publishedDate,
+  imageUrl,
+} from '../lib/cms'
+let post
+try {
+  post = await getPost(Astro.params.slug!)
+} catch (error) {
+  if (error instanceof CmsError && error.status === 404)
+    return Astro.rewrite('/404')
+  throw error
+}
+const author = post.author?.[0] === 'madoka' ? 'madoka♡' : 'なんしー'
+---
+
+<Layout
+  title={post.title}
+  description={post.description}
+  image={post.thumbnail?.url}
+  article
+>
+  <article class="article-shell">
+    <nav class="breadcrumbs" aria-label="パンくず">
+      <a href="/">ホーム</a>
+      <span>/</span>
+      {post.categories?.[0] && (
+        <>
+          <a href={`/category/${post.categories[0].id}`}>
+            {post.categories[0].name}
+          </a>
+          <span>/</span>
+        </>
+      )}
+      <span>記事</span>
+    </nav>
+    <header class="article-header">
+      <div class="article-categories">
+        {post.categories?.map((c) => (
+          <a href={`/category/${c.id}`}>{c.name}</a>
+        ))}
+      </div>
+      <h1>{post.title}</h1>
+      <div class="article-meta">
+        <time datetime={publishedDate(post)}>
+          {formatDate(publishedDate(post))}
+        </time>
+        <span>書いた人：{author}</span>
+      </div>
+    </header>
+    {post.thumbnail && (
+      <img
+        class="article-cover"
+        src={imageUrl(post.thumbnail.url, 1200)}
+        width="1200"
+        height="800"
+        alt={post.title}
+        fetchpriority="high"
+      />
+    )}
+    <div class="prose" set:html={post.body} />
+    <aside class="author">
+      <span class="eyebrow">この記事を書いた人</span>
+      <h2>{author}</h2>
+      <p>
+        {author === 'なんしー'
+          ? '2021年に五島列島の福江島に夫婦で移住し、島で出会った犬と暮らしている。趣味はSUP、釣り、キャンプ、スイーツ巡り。'
+          : '美味しいお魚をたくさん釣りたい。上手にお魚さばけるようになりたい。お魚の種類覚えたい。'}
+      </p>
+    </aside>
+    <a class="back-link" href="/">
+      ← 記事一覧に戻る
+    </a>
+  </article>
+</Layout>

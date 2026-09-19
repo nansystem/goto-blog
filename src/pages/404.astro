@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro'
+Astro.response.status = 404
+---
+
+<Layout title="ページが見つかりません" noindex>
+  <section class="not-found">
+    <span class="eyebrow">404 / NOT FOUND</span>
+    <h1>
+      お探しのページが
+      <br />
+      見つかりませんでした。
+    </h1>
+    <p>記事が移動したか、公開が終了した可能性があります。</p>
+    <a class="back-link" href="/">
+      ← 記事一覧に戻る
+    </a>
+  </section>
+</Layout>

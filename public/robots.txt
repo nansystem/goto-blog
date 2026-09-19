@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gotoretto.com/sitemap.xml

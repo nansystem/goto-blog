@@ -1,0 +1,12 @@
+---
+import { getListing } from '../../lib/cms'
+import Listing from '../../components/Listing.astro'
+const value = Astro.params.page || ''
+if (!/^[1-9]\d*$/.test(value) || !Number.isSafeInteger(Number(value)))
+  return Astro.rewrite('/404')
+if (value === '1') return Astro.redirect('/', 301)
+const data = await getListing(Number(value), undefined)
+if (!data) return Astro.rewrite('/404')
+---
+
+<Listing data={data} page={Number(value)} />
