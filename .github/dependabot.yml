@@ -18,6 +18,11 @@ updates:
       prefix: fix
       prefix-development: chore
       include: scope
+    ignore:
+      # @astrojs/check が TS7 未対応のため typescript の major 更新は保留（対応後に削除）
+      - dependency-name: typescript
+        update-types:
+          - version-update:semver-major
     groups:
       # ランタイム依存の minor/patch を1PRに集約（major は個別PR）
       production-minor-patch:
