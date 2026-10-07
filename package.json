@@ -18,8 +18,8 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
-    "@astrojs/vercel": "^11.0.10",
-    "astro": "^7.3.3"
+    "@astrojs/vercel": "^11.0.11",
+    "astro": "^7.3.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
