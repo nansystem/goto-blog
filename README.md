@@ -47,7 +47,9 @@ Git連携によるデプロイ後は `/`、既存の記事URL、`/category/sup`�
 
 ## 依存関係
 
-2026-10-10に公式npmの安定版を確認し、Astro 7.3.8、Vercel adapter 11.0.13、Astro用Prettier plugin 1.1.1、Node型定義26.6.5へ更新しました。RSS 4.0.19、Astro check 0.9.10、Prettier 3.9.9は既に最新です。TypeScriptは最新7.0.2を採用せず、`@astrojs/check` のpeer dependencyが5/6系に限られるため、対応範囲内の最新版6.0.3を使用します。Node.js実行環境は24 LTSです。
+2026-10-10に公式npmの安定版を確認し、Astro 7.3.8、Vercel adapter 11.0.12、Astro用Prettier plugin 1.1.1、Node型定義26.6.5へ更新しました。RSS 4.0.19、Astro check 0.9.10、Prettier 3.9.9は既に最新です。TypeScriptは最新7.0.2を採用せず、`@astrojs/check` のpeer dependencyが5/6系に限られるため、対応範囲内の最新版6.0.3を使用します。Node.js実行環境は24 LTSです。
+
+Vercel adapter 11.0.13はビルドに成功してもSSR実行時にRolldownのネイティブ依存を読み込めずHTTP 500になるため、11.0.12へ固定しています。[公式の既知不具合](https://github.com/withastro/astro/issues/18328)が修正された安定版で、プレビューのSSR動作を確認してから更新します。
 
 Astroの更新方針は[公式ガイド](https://docs.astro.build/en/upgrade-astro/)に従います。今回は7系内のpatch更新で、メジャー移行はありません。
 

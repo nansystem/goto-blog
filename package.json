@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
-    "@astrojs/vercel": "^11.0.13",
+    "@astrojs/vercel": "11.0.12",
     "astro": "^7.3.8"
   },
   "devDependencies": {
