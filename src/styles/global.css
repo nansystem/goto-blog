@@ -87,7 +87,7 @@ h3 {
   overflow: hidden;
   max-width: 1200px;
   margin: auto;
-  padding: 44px 32px 40px;
+  padding: 24px 32px;
   border-bottom: 1px solid var(--line);
 }
 .eyebrow {
@@ -97,17 +97,16 @@ h3 {
   color: var(--sea);
 }
 .hero h1 {
-  font-family: serif;
-  font-weight: 500;
-  font-size: clamp(36px, 5vw, 52px);
-  line-height: 1.55;
-  letter-spacing: 0.12em;
-  margin: 22px 0;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 0 0 8px;
 }
 .hero p {
   color: var(--muted);
   font-size: 14px;
-  line-height: 2.2;
+  line-height: 1.8;
+  margin: 0;
 }
 .content-shell {
   max-width: 1200px;

@@ -23,28 +23,11 @@ const pageUrl = (n: number) => (n === 1 ? base || '/' : `${base}/page/${n}`)
   }
 >
   <section class="hero">
-    <div class="eyebrow">長崎・五島列島 / 福江島</div>
-    <h1>
-      {category ? (
-        category.name
-      ) : (
-        <>
-          島の時間を、
-          <br />
-          おすそわけ。
-        </>
-      )}
-    </h1>
+    <h1>{category ? category.name : '五島しまあそび'}</h1>
     <p>
-      {category ? (
-        `「${category.name}」にまつわる、島の日々。`
-      ) : (
-        <>
-          海のそばで暮らす、あそぶ、おいしいものを見つける。
-          <br class="desktop-break" />
-          五島列島・福江島から、日々の記録を届けます。
-        </>
-      )}
+      {category
+        ? `「${category.name}」の記事。`
+        : '五島列島・福江島の暮らしと遊びの記録。'}
     </p>
   </section>
   <div class="content-shell">
@@ -64,7 +47,7 @@ const pageUrl = (n: number) => (n === 1 ? base || '/' : `${base}/page/${n}`)
     <section aria-labelledby="articles-heading">
       <div class="section-heading">
         <h2 id="articles-heading">
-          {category ? `${category.name}の記事` : '島からのお便り'}
+          {category ? `${category.name}の記事` : '記事一覧'}
         </h2>
         <span>{posts.totalCount} 記事</span>
       </div>
@@ -75,9 +58,7 @@ const pageUrl = (n: number) => (n === 1 ? base || '/' : `${base}/page/${n}`)
           ))}
         </div>
       ) : (
-        <p class="empty-state">
-          記事はまだありません。次のお便りをお待ちください。
-        </p>
+        <p class="empty-state">記事はまだありません。</p>
       )}
       {totalPages > 1 && (
         <nav class="pagination" aria-label="ページ送り">
@@ -102,22 +83,8 @@ const pageUrl = (n: number) => (n === 1 ? base || '/' : `${base}/page/${n}`)
       )}
     </section>
     <section class="about" id="about">
-      <div>
-        <span class="eyebrow">ABOUT THIS JOURNAL</span>
-        <h2>五島の暮らしと、私たち。</h2>
-      </div>
-      <div>
-        <p>
-          2021年に夫婦で五島列島の福江島へ移住。
-          <br />
-          島で出会った犬と暮らしながら、SUP、釣り、キャンプ、スイーツ巡りを楽しんでいます。
-        </p>
-        <p>
-          旅のヒントにも、ちょっとひと息つきたいときにも。
-          <br />
-          島の毎日を、のんびり読んでいってください。
-        </p>
-      </div>
+      <h2>プロフィール</h2>
+      <p>2021年に夫婦で福江島へ移住。島での暮らしや遊びを記録しています。</p>
     </section>
   </div>
 </Layout>
