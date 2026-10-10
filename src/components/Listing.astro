@@ -22,14 +22,12 @@ const pageUrl = (n: number) => (n === 1 ? base || '/' : `${base}/page/${n}`)
         : undefined
   }
 >
-  <section class="hero">
-    {category && <h1>{category.name}</h1>}
-    <p>
-      {category
-        ? `「${category.name}」の記事。`
-        : '五島列島・福江島の暮らしと遊びの記録。'}
-    </p>
-  </section>
+  {category && (
+    <section class="hero">
+      <h1>{category.name}</h1>
+      <p>「{category.name}」の記事。</p>
+    </section>
+  )}
   <div class="content-shell">
     <nav class="categories" aria-label="カテゴリー">
       <a href="/" aria-current={!categoryId ? 'page' : undefined}>
@@ -83,10 +81,6 @@ const pageUrl = (n: number) => (n === 1 ? base || '/' : `${base}/page/${n}`)
           )}
         </nav>
       )}
-    </section>
-    <section class="about" id="about">
-      <h2>プロフィール</h2>
-      <p>2021年に夫婦で福江島へ移住。島での暮らしや遊びを記録しています。</p>
     </section>
   </div>
 </Layout>

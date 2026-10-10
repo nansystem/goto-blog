@@ -72,9 +72,10 @@ h3 {
 .brand span {
   display: block;
   font-family: sans-serif;
-  font-size: 9px;
-  letter-spacing: 0.24em;
-  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+  margin-top: 4px;
   color: var(--muted);
 }
 .site-header nav {
@@ -426,9 +427,6 @@ h3 {
   .site-header nav {
     font-size: 11px;
     gap: 12px;
-  }
-  .site-header nav a:last-child {
-    display: none;
   }
   .hero {
     padding: 42px 22px 35px;
