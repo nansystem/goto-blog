@@ -23,7 +23,7 @@ const pageUrl = (n: number) => (n === 1 ? base || '/' : `${base}/page/${n}`)
   }
 >
   <section class="hero">
-    <h1>{category ? category.name : '五島しまあそび'}</h1>
+    {category && <h1>{category.name}</h1>}
     <p>
       {category
         ? `「${category.name}」の記事。`
@@ -46,9 +46,11 @@ const pageUrl = (n: number) => (n === 1 ? base || '/' : `${base}/page/${n}`)
     </nav>
     <section aria-labelledby="articles-heading">
       <div class="section-heading">
-        <h2 id="articles-heading">
-          {category ? `${category.name}の記事` : '記事一覧'}
-        </h2>
+        {category ? (
+          <h2 id="articles-heading">{category.name}の記事</h2>
+        ) : (
+          <h1 id="articles-heading">記事一覧</h1>
+        )}
         <span>{posts.totalCount} 記事</span>
       </div>
       {posts.contents.length ? (

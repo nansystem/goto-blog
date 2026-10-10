@@ -138,6 +138,7 @@ h3 {
   justify-content: space-between;
   margin: 0 0 24px;
 }
+.section-heading h1,
 .section-heading h2 {
   font-family: serif;
   font-size: 25px;
@@ -450,6 +451,7 @@ h3 {
     padding: 9px 14px;
     font-size: 11px;
   }
+  .section-heading h1,
   .section-heading h2 {
     font-size: 22px;
   }
