@@ -7,9 +7,14 @@ import {
   publishedDate,
   imageUrl,
 } from '../lib/cms'
+import { postPath, postId, articleBody } from '../lib/post-url'
+const slug = Astro.params.slug!
+const id = postId(slug)
+if (postPath(id) !== `/${slug}`)
+  return Astro.redirect(postPath(id) + Astro.url.search, 301)
 let post
 try {
-  post = await getPost(Astro.params.slug!)
+  post = await getPost(id)
 } catch (error) {
   if (error instanceof CmsError && error.status === 404)
     return Astro.rewrite('/404')
@@ -62,7 +67,7 @@ const author = post.author?.[0] === 'madoka' ? 'madoka♡' : 'なんしー'
         fetchpriority="high"
       />
     )}
-    <div class="prose" set:html={post.body} />
+    <div class="prose" set:html={articleBody(post.body)} />
     <aside class="author">
       <span class="eyebrow">この記事を書いた人</span>
       <h2>{author}</h2>

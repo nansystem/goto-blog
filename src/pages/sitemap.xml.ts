@@ -1,3 +1,4 @@
+import { postPath } from '../lib/post-url'
 import { getAllPosts, getCategories, PAGE_SIZE } from '../lib/cms'
 const escapeXml = (value: string) =>
   value.replace(
@@ -16,7 +17,7 @@ export async function GET() {
     getAllPosts(),
     getCategories(),
   ])
-  const paths = ['/', ...posts.map((p) => `/${p.id}`)]
+  const paths = ['/', ...posts.map((p) => postPath(p.id))]
   for (let page = 2; page <= Math.ceil(posts.length / PAGE_SIZE); page++)
     paths.push(`/page/${page}`)
   for (const category of categories) {

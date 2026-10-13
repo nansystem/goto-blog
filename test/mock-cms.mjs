@@ -18,6 +18,17 @@ export function createMockCms() {
     categories: i < 112 ? [categories[0]] : [categories[1]],
     author: i % 2 ? ['madoka'] : ['nancy'],
   }))
+  posts[2] = {
+    ...posts[2],
+    id: 'e2ijnvoy3',
+    title: '赤島 SUP',
+    thumbnail: {
+      url: 'https://images.microcms-assets.io/test/sup.jpg',
+      width: 1200,
+      height: 800,
+    },
+    body: '<h2>赤島の海</h2><p>SUPで島へ。</p><img src="https://images.microcms-assets.io/test/body.jpg" alt="赤島" /><a href="/e2ijnvoy3">赤島 SUP</a><a href="https://gotoretto.com/e2ijnvoy3?from=body#sea">海へ</a><a href="/e2ijnvoy3-other">別の記事</a>',
+  }
   const server = createServer((req, res) => {
     const url = new URL(req.url, 'http://localhost')
     res.setHeader('Content-Type', 'application/json')
