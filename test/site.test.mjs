@@ -101,3 +101,42 @@ test('RSS and sitemap include all pages beyond the CMS 100 item limit', async ()
   for (const path of ['/post-115', '/page/12', '/category/island/page/12'])
     assert.ok(sitemap.includes(`https://gotoretto.com${path}</loc>`), path)
 })
+
+test('Akashima SUP uses its new URL while preserving the CMS article', async () => {
+  for (const suffix of ['', '?from=old']) {
+    const redirect = await fetch(base + '/e2ijnvoy3' + suffix, {
+      redirect: 'manual',
+    })
+    assert.equal(redirect.status, 301)
+    assert.equal(redirect.headers.get('location'), '/akashima-sup' + suffix)
+  }
+  const response = await fetch(base + '/akashima-sup?from=test')
+  assert.equal(response.status, 200)
+  const html = await response.text()
+  assert.match(
+    html,
+    /<link rel="canonical" href="https:\/\/gotoretto.com\/akashima-sup"/,
+  )
+  assert.match(
+    html,
+    /property="og:url" content="https:\/\/gotoretto.com\/akashima-sup"/,
+  )
+  assert.match(html, /<h1[^>]*>.*?赤島 SUP.*?<\/h1>/s)
+  assert.match(html, /<h2>赤島の海<\/h2><p>SUPで島へ。<\/p>/)
+  assert.match(
+    html,
+    /src="https:\/\/images.microcms-assets.io\/test\/body.jpg" alt="赤島"/,
+  )
+  assert.match(html, /test\/sup.jpg/)
+  assert.match(html, /href="\/akashima-sup"/)
+  assert.match(html, /href="\/akashima-sup\?from=body#sea"/)
+  assert.match(html, /href="\/e2ijnvoy3-other"/)
+  for (const path of ['/', '/category/island', '/feed.xml', '/sitemap.xml']) {
+    const content = await (await fetch(base + path)).text()
+    assert.match(content, /\/akashima-sup/)
+    assert.doesNotMatch(content, /\/e2ijnvoy3(?:["<])/)
+  }
+  const other = await fetch(base + '/post-4', { redirect: 'manual' })
+  assert.equal(other.status, 200)
+  assert.match(await other.text(), /https:\/\/gotoretto.com\/post-4/)
+})

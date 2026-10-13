@@ -21,7 +21,9 @@ microCMS の `blogs` で記事を編集し、「公開」または「更新」�
 
 既存のフィールド（`title`、`description`、`body`、`thumbnail`、`categories`、`author`）と記事IDを引き続き使用します。本文は信頼されたCMS編集者が作成するリッチテキストHTMLとして表示します。
 
-記事のURL `/{記事ID}`、カテゴリー `/category/{カテゴリーID}`、ページ送り `/page/2`・`/category/{カテゴリーID}/page/2` を維持しています。`/feed.xml` は最新10件、`/sitemap.xml` は全公開記事・カテゴリー・一覧ページを返します。
+赤島SUP記事（CMS ID: `e2ijnvoy3`）のみ `/akashima-sup` を使用し、旧URL `/e2ijnvoy3` は301で転送します。CMSの記事ID・本文・画像の変更は不要です。URLの対応は `src/lib/post-url.ts` で管理し、記事カード・RSS・サイトマップに反映します。本文中の対象記事へのリンクも表示時に新URLへ置き換えます。
+
+それ以外の記事のURL `/{記事ID}`、カテゴリー `/category/{カテゴリーID}`、ページ送り `/page/2`・`/category/{カテゴリーID}/page/2` を維持しています。`/feed.xml` は最新10件、`/sitemap.xml` は全公開記事・カテゴリー・一覧ページを返します。
 
 CMSの設定漏れや認証・通信障害はサーバーエラーとして扱います。記事が存在しない場合だけ404を返し、障害時に空のブログを正常なページとして配信しません。
 

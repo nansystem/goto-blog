@@ -1,3 +1,4 @@
+import { postPath } from '../lib/post-url'
 import rss from '@astrojs/rss'
 import { getPosts, publishedDate } from '../lib/cms'
 export async function GET() {
@@ -9,7 +10,7 @@ export async function GET() {
     items: posts.contents.map((post) => ({
       title: post.title,
       description: post.description || '',
-      link: `/${post.id}`,
+      link: postPath(post.id),
       pubDate: new Date(publishedDate(post)),
     })),
     customData: '<language>ja</language>',
