@@ -49,10 +49,8 @@ Git連携によるデプロイ後は `/`、既存の記事URL、`/category/sup`�
 
 ## 依存関係
 
-2026-10-10に公式npmの安定版を確認し、Astro 7.3.8、Vercel adapter 11.0.12、Astro用Prettier plugin 1.1.1、Node型定義26.6.5へ更新しました。RSS 4.0.19、Astro check 0.9.10、Prettier 3.9.9は既に最新です。TypeScriptは最新7.0.2を採用せず、`@astrojs/check` のpeer dependencyが5/6系に限られるため、対応範囲内の最新版6.0.3を使用します。Node.js実行環境は24 LTSです。
+現在の安定版を確認し、Astro 7.4.4、Vercel adapter 11.0.17、Astro check 0.9.12、Astro用Prettier plugin 1.1.2、Node型定義26.6.6へ更新しています。RSS 4.0.19、Prettier 3.9.10、TypeScript 6.0.3は現行範囲内です。TypeScript 7.0.2は`@astrojs/check`のpeer dependency対象外のため採用せず、Node.js 24 LTSを維持します。
 
-Vercel adapter 11.0.13はビルドに成功してもSSR実行時にRolldownのネイティブ依存を読み込めずHTTP 500になるため、11.0.12へ固定しています。[公式の既知不具合](https://github.com/withastro/astro/issues/18328)が修正された安定版で、プレビューのSSR動作を確認してから更新します。
+Vercel adapter 11.0.13ではビルド後にSSRがHTTP 500となる既知事象がありました。今回更新した11.0.17はVercel PreviewでSSRを確認し、トップ、記事URL、カテゴリー、RSS、サイトマップが200、存在しないURLが404となることを確認しました。今後の更新でも同じPreview確認をProduction反映前に行います。ローカルでは模擬CMSを使ったHTTPテストとSSR buildを検証します。[Astroの更新ガイド](https://docs.astro.build/en/upgrade-astro/)に従い、Astroは7系内の更新です。
 
-Astroの更新方針は[公式ガイド](https://docs.astro.build/en/upgrade-astro/)に従います。今回は7系内のpatch更新で、メジャー移行はありません。
-
-Vercelの間接依存 `path-to-regexp` は、ReDoS修正済みの互換バージョン6.3.0へoverrideしています。Vercel adapterの間接依存 `@vercel/routing-utils@6.6.0` は依然6.1.0を要求するため、[公式の脆弱性修正](https://github.com/pillarjs/path-to-regexp/security/advisories/GHSA-9wv6-86v2-598j)に沿ってoverrideを維持しています。更新後の `npm audit` は0件です。上流で修正されたらoverrideを削除できます。
+Vercelの間接依存`path-to-regexp`は、ReDoS修正済みの互換バージョン6.3.0へoverrideしています。`@vercel/routing-utils@6.6.0`が依然6.1.0を要求するため、[公式の脆弱性修正](https://github.com/pillarjs/path-to-regexp/security/advisories/GHSA-9wv6-86v2-598j)に沿って維持します。また、`@vercel/cli-config@0.3.1`が脆弱なZod 4.1.11を固定指定するため、脆弱性修正版4.6.7へoverrideしています。上流の依存が修正された時点で各overrideを削除します。
